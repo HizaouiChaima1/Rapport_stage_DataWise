@@ -1,0 +1,46 @@
+
+%===== File containing the back cover of the document =====%
+%                                                          %
+% Copyright (C) ISI - All Rights Reserved                  %
+% Proprietary                                              %
+% Written by Med Hossam <med.hossam@gmail.com>, April 2016 %
+%                                                          %
+% @author: HEDHILI Med Houssemeddine                       %
+% @linkedin: http://tn.linkedin.com/in/medhossam           %
+%==========================================================%
+
+%== It's advised to not modify the content of this file ===%
+% To set your information, go to global_config.tex file    %
+%==========================================================%
+
+\thispagestyle{backcover}
+\begin{changemargin}{-1mm}{0cm}
+    \begin{minipage}[l]{1.1\columnwidth}
+        
+        \selectlanguage{french}
+        
+        {\LARGE\textbf{Résumé}}
+        \vskip5mm
+            {\large \@frenchAbstract}
+        \vskip5mm
+        {\large\textbf{Mots clés : }
+            \@frenchAbstractKeywords
+        }
+        
+        {\ifthenelse{\boolean{wantToTypeCompanyAddress}}
+            {\vskip13mm}{\vskip18mm}}
+        
+        \selectlanguage{english}
+        {\LARGE\textbf{Abstract}}
+        \vskip5mm
+            {\large \@englishAbstract}
+        \vskip5mm
+        {\large\textbf{Keywords : }
+            \@englishAbstractKeywords
+        }
+    
+    \end{minipage}
+    
+
+
+\end{changemargin}

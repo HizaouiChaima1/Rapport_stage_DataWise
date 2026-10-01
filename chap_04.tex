@@ -1,0 +1,55 @@
+
+\chapter{Conclusion}
+
+Le présent projet avait pour objectif de concevoir et déployer un Assistant IA autonome et intelligent dédié au cycle Procure-to-Pay (P2P), nativement interconnecté à l'ERP Microsoft Dynamics 365 Business Central. Face aux défis d'inefficacité, de complexité de saisie et de rupture d'information entre les processus achats, logistiques et comptables, cette solution apporte une rupture méthodologique en alliant l'IA Générative, l'orchestration agentique et les systèmes d'information d'entreprise.
+ 
+\section{Synthèse des Réalisations Techniques et Fonctionnelles}
+ 
+\subsection{Architecture Agentique Modulaire et Robuste}
+ 
+\begin{itemize}
+    \item Mise en place d'un graphe d'états avec \textbf{LangGraph} et d'un backend \textbf{FastAPI}, permettant un routage contextuel fin des intentions utilisateur (analyse de stock, prévisualisation de commande, recherche fournisseur, traitement de facture).
+    \item Intégration d'un \textbf{LLM local} (Ollama / Llama 3.1) garantissant à la fois la confidentialité des données de l'entreprise et l'autonomie vis-à-vis des API propriétaires externes.
+    \item Utilisation de la base vectorielle \textbf{Qdrant} pour la recherche sémantique avancée sur les catalogues d'articles et les historiques.
+\end{itemize}
+ 
+\subsection{Intégration ERP et Approche Human-in-the-Loop}
+ 
+\begin{itemize}
+    \item Connexion bidirectionnelle complète avec \textbf{Business Central} (OData v4) pour la manipulation sécurisée des entités clés (\textit{Purchase Orders}, \textit{Items}, \textit{Vendors}, \textit{Purchase Invoices}).
+    \item Instauration d'une validation humaine systématique via des cartes de prévisualisation (\texttt{PurchaseOrderPreviewCard}), évitant toute écriture erronée directe dans l'ERP et préservant l'intégrité comptable.
+    \item Prise en charge du \textbf{multi-sociétés} et mise en place d'un mécanisme de basculement sur cache/simulation pour assurer une haute résilience en cas d'indisponibilité du serveur ERP.
+\end{itemize}
+ 
+\subsection{Expérience Utilisateur Interactive et Métier}
+ 
+\begin{itemize}
+    \item Développement d'une interface web moderne (\textbf{Next.js 15}, \textbf{React 19}, \textbf{Tailwind CSS}) transformant les échanges textuels en composants visuels riches et interactifs (KPIs, alertes de réapprovisionnement, scoring fournisseurs, statut des bons de commande).
+\end{itemize}
+ 
+\section{Perspectives :}
+
+Ce socle agentique transactionnel offre de larges opportunités d'extension technique et fonctionnelle :
+ 
+\subsection{Perspectives Techniques et Architecture Agentique}
+ 
+\begin{enumerate}
+    \item \textbf{Architecture Multi-Agents Spécialisés (Multi-Agent Swarm)} : décomposer le graphe en plusieurs sous-agents experts collaboratifs :
+    \begin{itemize}
+        \item \textit{Agent Approvisionnement} : surveillance continue des seuils de réapprovisionnement et calcul du lot économique (EOQ).
+        \item \textit{Agent Contrôle de Gestion \& Finance} : vérification des plafonds budgétaires et validation des centres de coûts.
+        \item \textit{Agent Suivi \& Réception} : suivi des statuts de livraison auprès des transporteurs/fournisseurs.
+    \end{itemize}
+    \item \textbf{Support Multimodal pour les Pièces Justificatives (Factures \& BL)} : intégration de modèles de vision (Vision-LLMs) pour analyser et extraire instantanément les données structurées des factures PDF ou bons de livraison scannés, afin d'alimenter directement les outils de l'agent.
+    \item \textbf{Persistance Avancée et Reprise de Contexte Long Terme} : gestion de sessions asynchrones permettant à l'agent de relancer l'utilisateur ultérieurement (ex. : notification d'une commande restée en attente de validation ou d'un stock tombé sous le seuil critique).
+\end{enumerate}
+ 
+\subsection{Perspectives Métier et Fonctionnelles}
+ 
+\begin{enumerate}
+    \item \textbf{Automatisation du 3-Way Matching (Rapprochement à 3 voies)} : rapprochement automatique et algorithmique en temps réel dans l'ERP : Bon de Commande $\leftrightarrow$ Bon de Réception $\leftrightarrow$ Facture Fournisseur, avec détection immédiate des écarts de quantité ou de tarification.
+    \item \textbf{Réapprovisionnement Prédictif} : couplage de l'agent avec des modèles de prévision de la demande pour suggérer proactivement des commandes d'achat avant que la rupture de stock ne survienne.
+    \item \textbf{Intégration aux Outils Collaboratifs d'Entreprise} : déploiement de l'agent sur Microsoft Teams ou Outlook, permettant aux responsables d'approuver ou de modifier un bon de commande directement via des Adaptive Cards sans quitter leur messagerie.
+    \item \textbf{Automatisation de la Négociation et des Devis} : génération et envoi automatique de demandes de prix (RFQ) par e-mail aux fournisseurs présélectionnés, et analyse automatique des réponses reçues pour mise à jour dans l'ERP.
+\end{enumerate}
+ 

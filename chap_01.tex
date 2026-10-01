@@ -1,0 +1,95 @@
+\chapter{Contexte Général du Projet}
+
+\section{Introduction}
+Ce chapitre sera dédié à la présentation du cadre général de notre projet. Nous commencerons par introduire l'organisme d'accueil, puis nous décrirons le projet en détail. Ensuite, nous mènerons une étude approfondie de l'état actuel avec des critiques pertinentes. Nous exposerons ensuite notre solution proposée, suivie de la révélation de la méthodologie choisie pour accomplir ce projet.
+
+\section{Présentation de l'entreprise}
+
+\textbf{DataWise} est un cabinet de conseil spécialisé dans l'accompagnement des entreprises dans l'exploitation et l'optimisation de leurs solutions ERP (\textit{Enterprise Resource Planning}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.6]{images/datawise_soft_logo-removebg-preview.png}
+\caption{Logo Entreprise}
+\label{sofre}
+\end{figure}
+
+Fort d'une expertise reconnue dans ce domaine, l'organisme propose des services sur mesure visant à améliorer les performances opérationnelles de ses clients et à les aider à atteindre leurs objectifs stratégiques.
+
+Les principales activités de DataWise s'articulent autour des axes suivants :
+
+\begin{itemize}
+    \item \textbf{La migration et la mise à niveau des systèmes ERP :} permettant aux entreprises de passer aux versions les plus récentes tout en assurant la continuité de leurs opérations.
+    \item \textbf{La maintenance et le support des systèmes NAV} (Microsoft Dynamics NAV) \textbf{:} à travers un suivi proactif garantissant la sécurité et la performance des environnements ERP.
+    \item \textbf{Le développement de solutions personnalisées :} notamment des extensions et intégrations spécifiques répondant aux besoins particuliers de chaque client.
+    \item \textbf{L'intégration de l'intelligence artificielle aux écosystèmes ERP :} à travers la conception d'agents intelligents capables d'automatiser les tâches métiers, d'assister les utilisateurs en langage naturel et d'optimiser la prise de décision (choix fournisseurs, gestion des stocks, etc.).
+\end{itemize}
+
+L'entreprise se distingue par une approche centrée sur le client, fondée sur la confiance et la transparence, ainsi que par sa capacité à intégrer les technologies et méthodologies les plus récentes afin de proposer des solutions innovantes et adaptées à un environnement en constante évolution.
+
+\section{Présentation du projet}
+
+Dans le cadre du développement d'un écosystème IA d'approvisionnement pour Microsoft Dynamics 365 Business Central, j'ai contribué à la conception de deux briques complémentaires : un agent conversationnel Procure-to-Pay connecté en temps réel à Business Central, et une extension AL native intégrée à l'ERP pour le scoring et la sélection automatisée des fournisseurs. Ce projet visait à automatiser et fiabiliser le cycle d'achat, en combinant une interface conversationnelle intelligente avec un moteur de scoring mathématique, tout en garantissant une gouvernance stricte via des mécanismes de validation humaine avant toute création de commande.
+
+\subsection{Fonctionnalités principales}
+\begin{itemize}
+    \item Interrogation des stocks et obtention de recommandations de fournisseurs en langage naturel.
+    \item Création de bons de commande via l'agent conversationnel, avec prévisualisation et confirmation explicite avant validation.
+    \item Connexion temps réel à Business Central via l'API .
+    \item Moteur de scoring multi-critères des fournisseurs (prix, délai, qualité, fiabilité, historique).
+    \item Processus de validation humaine avant toute création de commande, garantissant la gouvernance et évitant tout engagement involontaire.
+\end{itemize}
+
+\subsection{Publics cibles}
+% Contenu à compléter : préciser les utilisateurs finaux visés (ex. équipes achats/approvisionnement, gestionnaires de stock, responsables ERP au sein des entreprises clientes de DataWise).
+\begin{itemize}
+    \item Les équipes achats et approvisionnement souhaitant accélérer et fiabiliser la sélection des fournisseurs.
+    \item Les gestionnaires de stock ayant besoin d'interroger rapidement les niveaux de stock via une interface conversationnelle.
+    \item Les responsables ERP au sein des entreprises utilisatrices de Business Central.
+\end{itemize}
+
+\subsection{Rôle et responsabilités dans le projet}
+Mes missions ont été articulées autour des axes suivants :
+\begin{itemize}
+    \item \textbf{Analyse des besoins :} étudier le cycle d'approvisionnement existant dans Business Central et identifier les points de friction, comme la lenteur de sélection des fournisseurs et le manque de fiabilité des échanges avec l'ERP. Cette étape a permis de définir les exigences fonctionnelles du système.
+
+    \item \textbf{Conception de la solution :} modéliser l'architecture globale en définissant les différentes couches (interface conversationnelle, API, orchestration, connecteur ERP) et structurer le flux de traitement des requêtes utilisateur, de la classification d'intention jusqu'à la création de commande.
+
+    \item \textbf{Développement de l'agent conversationnel :} implémenter un assistant intelligent, permettant aux utilisateurs d'interroger les stocks, d'obtenir des recommandations de fournisseurs et de créer des bons de commande en langage naturel.
+
+    \item \textbf{Intégration avec l'ERP :} développer un client de communication temps réel avec Business Central via l'API OData v4, intégrant un mécanisme de résilience (circuit breaker, cache multi-niveaux, tentatives automatiques) pour garantir la continuité de service.
+
+    \item \textbf{Développement du moteur de scoring fournisseurs :} concevoir un système d'évaluation multi-critères (prix, délai, qualité, fiabilité, historique) permettant de classer objectivement les fournisseurs pour chaque article.
+
+    \item \textbf{Sécurisation des transactions :} mettre en place un processus de validation humaine avant toute création de commande (prévisualisation, confirmation explicite, statut brouillon) afin d'éviter tout engagement involontaire.
+
+    \item \textbf{Tests et validation :} diagnostiquer et corriger les anomalies détectées en conditions réelles (timeouts, faux positifs de statut de commande, erreurs d'extraction d'intention) et valider la conformité du système par rapport aux exigences fonctionnelles.
+\end{itemize}
+
+\section{Étude de l'existant}
+
+\subsection{Analyse des solutions existantes}
+% Contenu à compléter : présenter ici les solutions/outils existants sur le marché (ou au sein de Business Central) pour la gestion des achats et la sélection des fournisseurs, avec leurs limites.
+Avant le développement de ce projet, le cycle d'approvisionnement au sein de Business Central reposait sur des processus manuels ou semi-automatisés pour la sélection des fournisseurs et la création des commandes.
+
+\subsubsection{Problématique}
+Cette analyse a mis en évidence plusieurs limites :
+\begin{itemize}
+    \item Une lenteur dans la sélection des fournisseurs, faute d'un système de scoring objectif et automatisé.
+    \item Un manque de fiabilité dans les échanges de données avec l'ERP, exposant le processus à des erreurs et des interruptions.
+    \item L'absence d'une interface conversationnelle permettant aux utilisateurs d'interroger les stocks ou de créer des commandes en langage naturel.
+\end{itemize}
+
+\subsection{Positionnement de notre solution}
+Face à ces limites, la solution proposée combine un agent conversationnel Procure-to-Pay et une extension AL native de scoring fournisseurs, directement intégrés à Business Central. Elle se distingue par l'automatisation du cycle d'achat, l'objectivité du scoring multi-critères, et une gouvernance stricte assurée par la validation humaine avant toute création de commande.
+
+
+\section{Méthodologie choisie}
+Le développement du projet a été mené selon la méthodologie \textbf{Scrum}, un cadre agile itératif adapté à la nature évolutive du projet, qui associe un agent conversationnel, un moteur de scoring et une intégration à l'ERP.
+ 
+\subsection{Sprints et itérations}
+Le travail a été organisé en sprints, chacun correspondant à un incrément fonctionnel du système : mise en place du connecteur ERP, développement de l'agent conversationnel, implémentation du moteur de scoring, sécurisation du processus de validation (Human-in-the-Loop), puis tests et corrections. Cette organisation itérative a permis de valider progressivement chaque couche de l'architecture (interface conversationnelle, API, orchestration, connecteur ERP) avant de passer à la suivante, et d'intégrer au fur et à mesure les retours obtenus lors des tests en conditions réelles.
+ 
+\section{Conclusion}
+Ce chapitre a permis de poser le cadre général du projet : présentation de l'organisme d'accueil DataWise, description du projet d'écosystème IA d'approvisionnement pour Microsoft Dynamics 365 Business Central, ainsi que l'étude de l'existant ayant justifié les choix effectués. La méthodologie Scrum retenue a structuré le déroulement du projet en itérations successives, permettant une montée en charge progressive des fonctionnalités.
+ 
